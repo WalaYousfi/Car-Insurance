@@ -9,7 +9,7 @@ export class SecondStepComponent {
   otp!: string;
 
   otpConfig = {
-    length: 5,
+    length: 6,
     inputStyles: {
       'width': '40px',
       'height': '40px',
