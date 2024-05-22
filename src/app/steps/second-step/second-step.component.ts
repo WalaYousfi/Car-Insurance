@@ -1,15 +1,38 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-second-step',
   templateUrl: './second-step.component.html',
-  styleUrl: './second-step.component.scss',
+  styleUrls: ['./second-step.component.scss'],
 })
 export class SecondStepComponent {
-  form = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
+  otp!: string;
 
-  constructor(private fb: FormBuilder) {}
+  otpConfig = {
+    length: 5,
+    inputStyles: {
+      'width': '40px',
+      'height': '40px',
+      'margin': '0 5px',
+      'font-size': '20px',
+      'border-radius': '5px',
+      'border': '1px solid #ccc',
+      'text-align': 'center'
+    },
+    containerStyles: {
+      'display': 'flex',
+      'justify-content': 'center',
+      'margin': '20px 0'
+    },
+    allowNumbersOnly: true,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: '-',
+    letterCase: 'Upper' as 'Upper' | 'Lower' | undefined
+  };
+
+  onOtpChange(otp: string) {
+    this.otp = otp;
+    console.log('OTP Value:', this.otp);
+  }
 }

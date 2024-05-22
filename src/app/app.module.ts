@@ -24,6 +24,7 @@ import { FirstStepComponent } from './steps/first-step/first-step.component';
 import { SecondStepComponent } from './steps/second-step/second-step.component';
 import { LastStepComponent } from './steps/last-step/last-step.component';
 import { DetailComponent } from './detail/detail.component';
+import { NgOtpInputModule } from  'ng-otp-input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { DetailComponent } from './detail/detail.component';
     MatSelectModule,
     MatToolbarModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    NgOtpInputModule
   ],
   providers: [
     provideClientHydration(),

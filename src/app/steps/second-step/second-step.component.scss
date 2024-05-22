@@ -1,0 +1,25 @@
+.otp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.otp-label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.otp-navigation {
+  margin-top: 20px;
+  text-align: center;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin: 0 5px;
+  }
+}
