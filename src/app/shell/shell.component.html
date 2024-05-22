@@ -1,113 +1,61 @@
-<mat-stepper #stepper>
-  <mat-step
-    [stepControl]="firstFormGroup"
-    errorMessage="Name is required."
-    
+<mat-sidenav-container class="sidenav-container">
+  <!-- if isHandset is true ,we set the role value as dialogue
+    the role attribute is stricktly for accessibilty -->
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="false"
   >
-    <form [formGroup]="firstFormGroup" class="oneStep">
-      <ng-template matStepLabel>Fill out your name</ng-template>
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="" (click)="drawer.close()">Home</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <!-- need this only on small devices
+            that is why we use ngif -->
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <button routerLink="/login" mat-button>Login</button>
+      <span class="fill-space"></span>
+      <div *ngIf="!(isHandset$ | async)">
+        <a mat-button routerLink="/">Acceil</a>
+      </div>
+      <!-- DROPDOWN MENU -->
 
-      <mat-form-field class="dropTasjil">
-        <mat-label> Type d'immatriculation سلسلة التسجيل </mat-label>
-        <mat-select>
-          @for (tasjil of tasjils; track tasjil) {
-          <mat-option [value]="tasjil.value">{{ tasjil.value }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
 
-      <div>
-        <div>
-          <mat-form-field>
-            <mat-label>Serie</mat-label>
-            <input
-              matInput
-              placeholder="Serie"
-              formControlName="firstCtrl"
-              required
-            />
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <mat-label>Confirm Serie</mat-label>
-            <input
-              matInput
-              placeholder="Serie"
-              formControlName="confirmCtrl"
-              required
-            />
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field class="dropTasjil">
-            <mat-label
-              >Tapez les 5 derniers caractères du N° de châssis:</mat-label
-            >
-            <input matInput type="password" placeholder="" />
-          </mat-form-field>
-        </div>
-        <div
-          *ngIf="
-            firstFormGroup.controls.firstCtrl.value !==
-            firstFormGroup.controls.confirmCtrl.value
-          "
+      <mat-menu #menu="matMenu">
+        <a
+          mat-menu-item
+          href="https://www.attt.com.tn/DEV_WEB/prendreunrendezvous.php?code_menu=73&code_p=4"
         >
-          <p>The names you entered do not match. Please try again.</p>
-        </div>
-      </div>
-
-      <div>
-        <p>Go to a different step to see the error state</p>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 1 Main St, New York, NY"
-          formControlName="secondCtrl"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <p>Go to a different step to see the error state</p>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+          <span>Old version</span>
+        </a>
+      </mat-menu>
+    </mat-toolbar>
+    <h1>Bienvenue sur l'espace de prise de RDV pour la Visite Technique.</h1>
+    <h1>.مرحبا بكم في فضاء الفحص الفنّي حسب الموعد</h1>
+    <div class="fixed">
+      <app-all-steps></app-all-steps>
+      <app-detail></app-detail>
     </div>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-stepper>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -16,12 +16,25 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import { AllStepsComponent } from './all-steps/all-steps.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { FirstStepComponent } from './steps/first-step/first-step.component';
+import { SecondStepComponent } from './steps/second-step/second-step.component';
+import { LastStepComponent } from './steps/last-step/last-step.component';
+import { DetailComponent } from './detail/detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     ShellComponent,
     TryComponent,
+    AllStepsComponent,
+    FirstStepComponent,
+    SecondStepComponent,
+    LastStepComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +47,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     provideClientHydration(),

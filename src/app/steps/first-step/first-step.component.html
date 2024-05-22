@@ -1,0 +1,92 @@
+<form [formGroup]="form" class="oneStep">
+  <ng-template matStepLabel>Fill out your name</ng-template>
+
+  <mat-form-field class="dropTasjil">
+    <mat-label> Type d'immatriculation سلسلة التسجيل </mat-label>
+    <mat-select
+      formControlName="matriculation"
+      (selectionChange)="onMatriculationChange($event.value)"
+    >
+      <mat-option *ngFor="let tasjil of tasjils" [value]="tasjil.value">{{
+        tasjil.value
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div
+    *ngIf="selectedTasjil?.value !== 'Immatriculation Etrangère ou Douanière'"
+  >
+    <div class="serie">
+      <mat-form-field>
+        <mat-label>Serie</mat-label>
+        <input
+          matInput
+          placeholder="Serie"
+          formControlName="firstCtrl"
+          required
+        />
+      </mat-form-field>
+
+      <div *ngIf="selectedTasjil?.span">
+        <span>{{ selectedTasjil.span }}</span>
+        <mat-form-field>
+          <mat-label>N°</mat-label>
+          <input
+            matInput
+            placeholder="Serie"
+            formControlName="confirmCtrl"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="serie">
+      <mat-form-field>
+        <mat-label>Confirm Serie</mat-label>
+        <input
+          matInput
+          placeholder="Serie"
+          formControlName="confirmCtrl"
+          required
+        />
+      </mat-form-field>
+      <div *ngIf="selectedTasjil?.span">
+        <span> {{ selectedTasjil.span }}</span>
+        <mat-form-field>
+          <mat-label>N°</mat-label>
+          <input
+            matInput
+            placeholder="Serie"
+            formControlName="firstCtrl"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div>
+    <mat-form-field class="dropTasjil">
+      <mat-label>Tapez les 5 derniers caractères du N° de châssis: أدخل العدد الرتبي</mat-label>
+      <input matInput type="password" placeholder="" />
+    </mat-form-field>
+  </div>
+  <div
+    *ngIf="selectedTasjil?.value == 'Immatriculation Etrangère ou Douanière'"
+  >
+    <mat-form-field class="dropTasjil">
+      <mat-label>Confirmer le N° de châssis (*) : تأكيد العدد الرتبي</mat-label>
+      <input matInput type="password" placeholder="" />
+    </mat-form-field>
+  </div>
+
+  <div
+    *ngIf="form.controls.firstCtrl.value !== form.controls.confirmCtrl.value"
+  >
+    <p>The names you entered do not match. Please try again.</p>
+  </div>
+
+  <div>
+    <p>Go to a different step to see the error state</p>
+    <button mat-button matStepperNext>Next</button>
+  </div>
+</form>

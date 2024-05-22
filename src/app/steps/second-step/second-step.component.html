@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        placeholder="Ex. 1 Main St, New York, NY"
+        formControlName="secondCtrl"
+        required
+      />
+    </mat-form-field>
+    <div>
+      <p>Go to a different step to see the error state</p>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </form>
